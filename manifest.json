@@ -1,0 +1,33 @@
+{
+  "manifest_version": 3,
+  "name": "Metabase Query Assistant",
+  "version": "1.0",
+  "description": "Convert plain text to MBQL/SQL queries for Metabase",
+  "permissions": [
+    "activeTab",
+    "storage"
+  ],
+  "host_permissions": [
+    "*://*/*"
+  ],
+  "content_scripts": [
+    {
+      "matches": ["*://*/question/*", "*://*/dashboard/*", "*://metabase.*/*"],
+      "js": ["content.js"],
+      "css": ["styles.css"]
+    }
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "Query Assistant"
+  },
+  "web_accessible_resources": [
+    {
+      "resources": ["styles.css"],
+      "matches": ["<all_urls>"]
+    }
+  ]
+}
